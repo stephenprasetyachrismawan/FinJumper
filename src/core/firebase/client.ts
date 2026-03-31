@@ -1,4 +1,5 @@
 import { initializeApp } from 'firebase/app';
+import { getAnalytics, isSupported, type Analytics } from 'firebase/analytics';
 import { getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
 import { getFunctions } from 'firebase/functions';
@@ -16,7 +17,18 @@ const firebaseApp = initializeApp({
   measurementId: env.EXPO_PUBLIC_FIREBASE_MEASUREMENT_ID,
 });
 
+let analyticsInstance: Analytics | null = null;
+
+if (typeof window !== 'undefined') {
+  void isSupported().then((supported) => {
+    if (supported) {
+      analyticsInstance = getAnalytics(firebaseApp);
+    }
+  });
+}
+
 export const auth = getAuth(firebaseApp);
 export const db = getFirestore(firebaseApp);
 export const storage = getStorage(firebaseApp);
 export const functions = getFunctions(firebaseApp);
+export const analytics = analyticsInstance;
