@@ -1,0 +1,14 @@
+{
+  "expo": {
+    "name": "FinJumper",
+    "slug": "finjumper",
+    "scheme": "finjumper",
+    "plugins": ["expo-router"],
+    "experiments": {
+      "typedRoutes": true
+    },
+    "web": {
+      "bundler": "metro"
+    }
+  }
+}
