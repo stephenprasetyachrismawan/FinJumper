@@ -39,3 +39,8 @@
 - Enforce ownership checks and reference integrity in both Functions and Rules.
 - Sensitive mutations must emit audit logs.
 - Server-owned aggregates (balances, snapshots, analytics rollups) must not be client-authoritative.
+
+## Reinforced conventions
+
+- Keep TypeScript path aliases synchronized across `tsconfig.json`, test runner config (Vitest), and tooling config to prevent silent test/import drift.
+- Expo web runtime validation must include `react-native-web` dependency and use `CI=1 expo start --web` for non-interactive smoke checks (the `--non-interactive` flag is unsupported for `expo start`).

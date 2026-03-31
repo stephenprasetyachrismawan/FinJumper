@@ -481,3 +481,25 @@ For each phase from 1 onward:
    - regression risks
 5. Summarize residual risks and mitigation.
 
+
+---
+
+### Phase 0 Reinforcement Notes (Execution Learnings)
+
+- Tooling constraint discovered in execution: path aliases (e.g. `@/*`) must be explicitly mirrored in Vitest/Vite resolve config, otherwise tests can pass typecheck but fail runtime module resolution.
+- Delivery guardrail update: each phase validation should include at least one executed test command to catch runtime configuration drift beyond lint/typecheck.
+
+### Execution Status
+
+- [x] Phase 1 — Scaffold completed (initial Expo Router web scaffold, Firebase init module, provider shell, base UI primitives, env schema, lint/typecheck/tests green).
+- [ ] Phase 2 — Authentication
+- [ ] Phase 3 — Accounts & Categories
+- [ ] Phase 4 — Transactions & Transfers
+- [ ] Phase 5 — Dashboard & Charts
+- [ ] Phase 6 — Budgets
+- [ ] Phase 7 — Savings & Projection
+- [ ] Phase 8 — Investments
+- [ ] Phase 9 — Reports & Export
+- [ ] Phase 10 — Security Hardening & Final QA
+- Expo CLI execution constraint discovered: web smoke checks should run with `CI=1 npm run web` plus a timeout; `--non-interactive` is not accepted by `expo start`.
+- Dependency constraint discovered: `react-native-web` is required for Expo web startup and must remain in project dependencies for Phase 1/2 validation.
